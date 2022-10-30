@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from "react";
+import { useRef } from "react";
+import { Stage } from '@react-three/drei'
+import { Canvas, UseFrame } from "@react-three/fiber";
+import { OrbitControls, useGLTF,PerspectiveCamera } from "@react-three/drei";
+import { Text3D } from "./components/Text3d";
+import { Model } from "./components/Scene";
+import { Text } from "./components/Text";
+import { YG } from "./components/YG";
+import { PointLightHelperProps } from "react-three-fiber";
+import { PointLight } from "three";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <Canvas dpr={[1, 3]} camera={{ position:[5,3,13],fov: 45 }}>
+        <color attach="background" args={['transparent']} />
+        <Suspense fallback={null}>
+          <ambientLight/>
+          <pointLight position = {[10,10,10]} />
+           <YG />
+        </Suspense>
+      </Canvas>
+    <h1> Yaroslav Portfolio </h1>
     </div>
-  );
-}
 
-export default App;
+  )
+}
