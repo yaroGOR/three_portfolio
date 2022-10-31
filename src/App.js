@@ -1,29 +1,37 @@
-import React, { Suspense } from "react";
-import { useRef } from "react";
-import { Stage } from '@react-three/drei'
-import { Canvas, UseFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF,PerspectiveCamera } from "@react-three/drei";
+import React from "react";
+import {useState} from 'react';
 
-import { YG } from "./components/YG";
-import { PointLightHelperProps } from "react-three-fiber";
-import { PointLight } from "three";
+import ModelViewer from "./components/3dLetters/modelViewer";
+import About from "./components/about/about";
+import Skills from "./components/skills/skills";
+import Education from "./components/education/education";
+import Contacts from "./components/contacts/contacts";
+
 
 export default function App() {
+  const [page, setPage] = useState('about');
+  
   return (
-    <div >
-      <Canvas dpr={[1, 3]} camera={{ position:[5,3,13],fov: 45 }}>
-        <color attach="background" args={['transparent']} />
-        <Suspense fallback={null}>
-          <ambientLight/>
-          <fog attach="fog" args={['black', 2, 0]} />
-          <pointLight position = {[10,10,10]} />
-          <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
-           <YG />
-           <OrbitControls/>
-        </Suspense>
-      </Canvas>
-    <h1> Yaroslav Portfolio </h1>
-    </div>
+    <div className="container-main">
+      <div className="main-content">
+        <h1> Yaroslav Gorban portfolio</h1>
+        {page === 'about' && <About/>}
+        {page === 'skills' && <Skills/>}
+        {page === 'education' && <Education/>}
+        {page === 'contacts' && <Contacts/>}
 
+      </div>
+      <div className="canvas"> 
+           <ModelViewer />
+      </div>
+      <div className="some-content">
+        <div className="btn-toolbar" role="toolbar">
+        <button className ='btn btn-secondary' onClick = {() =>setPage('about')}>About </button>
+        <button className ='btn btn-secondary' onClick = {() =>setPage('skills')}>Skills </button>
+        <button className ='btn btn-secondary' onClick = {() =>setPage('education')}>Education </button>
+        <button className ='btn btn-secondary' onClick = {() =>setPage('contacts')}>Contacts </button>
+        </div>
+      </div>
+    </div>
   )
 }

@@ -1,47 +1,38 @@
-* {
-    box-sizing: border-box;
-  }
-  
-  html,
-  body,
-  #root,
-  #root > div {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    background: #f0f0f0;
-  }
-  
-  nav {
-    position: absolute;
-    z-index: 2;
-    bottom: 0;
-    width: 240px;
-    background-color: #f5f5f5;
-    left: calc(50% - 120px);
-  }
-  nav ul {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    gap: 20px;
-    padding: 10px 20px;
-    margin: 0;
-  }
-  nav ul li a {
-    font-size: 0px;
-    width: 50px;
-    height: 50px;
-    background-color: crimson;
-    display: block;
-  }
-  nav ul li:nth-of-type(2) a {
-    background-color: teal;
-  }
-  nav ul li:nth-of-type(3) a {
-    background-color: steelblue;
-  }
+html, body {
+  margin:0px;
+  padding: 0px;
+}
+*{
+  box-sizing: border-box;
+}
+.container-main {  
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr;
+  grid-template-rows: 1.6fr 0.4fr;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "main-content canvas"
+    "main-content some-content";
+}
+
+.main-content { 
+  grid-area: main-content; 
+  width: 40vw;
+}
+
+.canvas {
+  grid-area: canvas; 
+  width: 60vw;
+}
+canvas{
+ 
+  height: 85vh;
+}
+.some-content { 
+  grid-area: some-content;
+  align-content: center;
+ }
