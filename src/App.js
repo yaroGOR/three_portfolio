@@ -3,9 +3,7 @@ import { useRef } from "react";
 import { Stage } from '@react-three/drei'
 import { Canvas, UseFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF,PerspectiveCamera } from "@react-three/drei";
-import { Text3D } from "./components/Text3d";
-import { Model } from "./components/Scene";
-import { Text } from "./components/Text";
+
 import { YG } from "./components/YG";
 import { PointLightHelperProps } from "react-three-fiber";
 import { PointLight } from "three";
@@ -17,8 +15,11 @@ export default function App() {
         <color attach="background" args={['transparent']} />
         <Suspense fallback={null}>
           <ambientLight/>
+          <fog attach="fog" args={['black', 2, 0]} />
           <pointLight position = {[10,10,10]} />
+          <spotLight intensity={0.5} angle={0.1} penumbra={1} position={[10, 15, 10]} castShadow />
            <YG />
+           <OrbitControls/>
         </Suspense>
       </Canvas>
     <h1> Yaroslav Portfolio </h1>
